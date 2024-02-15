@@ -2,8 +2,9 @@
 using SistemaMedico.Modelos.ViewModels;
 using System.Diagnostics;
 
-namespace SistemaMedico.Controllers
+namespace SistemaMedico.Areas.Hospital.Controllers
 {
+    [Area("Hospital")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
