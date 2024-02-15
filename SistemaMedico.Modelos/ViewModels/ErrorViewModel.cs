@@ -1,4 +1,4 @@
-namespace SistemaMedico.Models
+namespace SistemaMedico.Modelos.ViewModels
 {
     public class ErrorViewModel
     {

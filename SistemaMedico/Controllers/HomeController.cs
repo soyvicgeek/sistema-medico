@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SistemaMedico.Models;
+using SistemaMedico.Modelos.ViewModels;
 using System.Diagnostics;
 
 namespace SistemaMedico.Controllers
