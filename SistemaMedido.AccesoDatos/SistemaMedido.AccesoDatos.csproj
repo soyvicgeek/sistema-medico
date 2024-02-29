@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SistemaMedico.Utilidades\SistemaMedico.Utilidades.csproj" />
+    <ProjectReference Include="..\SistemaMedico.Modelos\SistemaMedico.Modelos.csproj" />
   </ItemGroup>
 
 </Project>
