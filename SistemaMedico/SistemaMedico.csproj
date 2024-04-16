@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-SistemaMedico-91fd434c-41a8-4230-9f0b-85368c2ee9de</UserSecretsId>
   </PropertyGroup>
