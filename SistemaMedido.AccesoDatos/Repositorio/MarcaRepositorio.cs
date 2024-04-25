@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SistemaMedido.AccesoDatos.Repositorio
 {
-    internal class MarcaRepositorio : Repositorio<Marca>, IMarcaRepositorio
+    public class MarcaRepositorio : Repositorio<Marca>, IMarcaRepositorio
     {
         private readonly ApplicationDbContext _db;
         public MarcaRepositorio(ApplicationDbContext db) : base(db)

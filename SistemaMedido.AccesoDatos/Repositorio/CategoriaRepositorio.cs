@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SistemaMedido.AccesoDatos.Repositorio
 {
-    internal class CategoriaRepositorio : Repositorio<Categoria>, ICategoriaRepositorio
+    public class CategoriaRepositorio : Repositorio<Categoria>, ICategoriaRepositorio
     {
         private readonly ApplicationDbContext _db;
         public CategoriaRepositorio(ApplicationDbContext db) : base(db)
