@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaMedido.AccesoDatos.Repositorio.IRepositorio;
+using SistemaMedico.Modelos;
+using SistemaMedico.Modelos.ViewModels;
 
 namespace SistemaMedico.Areas.Admin.Controllers
 {
@@ -20,7 +22,28 @@ namespace SistemaMedico.Areas.Admin.Controllers
         // Método Upsert GET
         public async Task<IActionResult> Upsert(int? id)
         {
-            return View();
+            ProductoVM productoVM = new ProductoVM()
+            {
+                Producto = new Producto(),
+                CategoriaLista = _unidadTrabajo.Producto.ObtenerTodosDropDownList("Categoria"),
+                MarcaLista = _unidadTrabajo.Producto.ObtenerTodosDropDownList("Marca")
+
+            };
+
+            if (id == null)
+            {
+                return View(productoVM);
+            }
+            else
+            {
+                productoVM.Producto = await _unidadTrabajo.Producto
+                    .Obtener(id.GetValueOrDefault());
+                if (productoVM.Producto == null)
+                {
+                    return NotFound();
+                }
+                return View(productoVM);
+            }
         }
 
         // Región API

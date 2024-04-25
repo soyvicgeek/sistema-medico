@@ -1,4 +1,5 @@
-﻿using SistemaMedico.AccesoDatos.Data;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SistemaMedico.AccesoDatos.Data;
 using SistemaMedico.Modelos;
 using SistemaMedido.AccesoDatos.Repositorio.IRepositorio;
 using System;
@@ -39,6 +40,27 @@ namespace SistemaMedido.AccesoDatos.Repositorio
 
                 _db.SaveChanges();
             }
+        }
+
+        public IEnumerable<SelectListItem> ObtenerTodosDropDownList(string obj)
+        {
+            if (obj == "Categoria")
+            {
+                return _db.Categorias.Where(c => c.Estado == true).Select(c => new SelectListItem
+                {
+                    Text = c.Nombre,
+                    Value = c.Id.ToString()
+                });
+            }
+            if (obj == "Marca")
+            {
+                return _db.Marcas.Where(c => c.Estado == true).Select(c => new SelectListItem
+                {
+                    Text = c.Nombre,
+                    Value = c.Id.ToString()
+                });
+            }
+            return null;
         }
     }
 }
