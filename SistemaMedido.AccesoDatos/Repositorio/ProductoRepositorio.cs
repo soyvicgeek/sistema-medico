@@ -2,18 +2,12 @@
 using SistemaMedico.AccesoDatos.Data;
 using SistemaMedico.Modelos;
 using SistemaMedido.AccesoDatos.Repositorio.IRepositorio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaMedido.AccesoDatos.Repositorio
 {
     public class ProductoRepositorio : Repositorio<Producto>, IProductoRepositorio
     {
         private readonly ApplicationDbContext _db;
-
         public ProductoRepositorio(ApplicationDbContext db) : base(db)
         {
             _db = db;
@@ -57,6 +51,14 @@ namespace SistemaMedido.AccesoDatos.Repositorio
                 return _db.Marcas.Where(c => c.Estado == true).Select(c => new SelectListItem
                 {
                     Text = c.Nombre,
+                    Value = c.Id.ToString()
+                });
+            }
+            if (obj == "Producto")
+            {
+                return _db.Productos.Where(c => c.Estado == true).Select(c => new SelectListItem
+                {
+                    Text = c.Descripcion,
                     Value = c.Id.ToString()
                 });
             }
