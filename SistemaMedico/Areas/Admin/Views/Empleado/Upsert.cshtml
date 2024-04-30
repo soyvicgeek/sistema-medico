@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Nombre</label>
-                            <input asp-for="Empleado.Nombre" class="form-control" />
+                            <input asp-for="Empleado.Nombre" class="form-control" id="nombre" />
                             <span asp-validate-for="Empleado.Nombre" class="text-danger"></span>
                         </div>
                     </div>
@@ -126,6 +126,26 @@
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
+    
     <script>
+        document.getElementById("nombre").addEventListener('change', function () {
+            ValidarNombre();
+        });
+
+        function ValidarNombre() {
+            var url = '@Url.Content("~/")' + "Admin/Empleado/ValidarNombre";
+            var id = '#id';
+            var nombre = '#nombre';
+
+            $.getJSON(url, { id: $(id).val(), nombre: $(nombre).val() }, function (data) {
+                $.each(data, function (key, value) {
+                    if (value) {
+                        var nombre = document.getElementById("nombre");
+                        swal("E R R O R", "Este Nombre ya Existe", "error");
+                        nombre.value = "";
+                    }
+                });
+            })
+        }
     </script>
 }
