@@ -12,6 +12,9 @@ namespace SistemaMedido.AccesoDatos.Repositorio.IRepositorio
         ICategoriaRepositorio Categoria { get; }
         IMarcaRepositorio Marca { get; }
         IProductoRepositorio Producto { get; }
+        IAreaRepositorio Area { get; }
+        IPuestoRepositorio Puesto { get; }
+        IEmpleadoRepositorio Empleado { get; }
 
         Task Guardar();
     }

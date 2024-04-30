@@ -16,6 +16,11 @@ namespace SistemaMedico.AccesoDatos.Data
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Producto> Productos { get; set; }
 
+        //Examen
+        public DbSet<Area> Areas { get; set; }
+        public DbSet<Puesto> Puestos { get; set; }
+        public DbSet<Empleado> Empleados { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

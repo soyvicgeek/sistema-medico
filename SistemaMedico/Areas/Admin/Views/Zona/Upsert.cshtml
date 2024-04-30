@@ -1,0 +1,84 @@
+﻿@model SistemaMedico.Modelos.Area
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var titulo = "Crear Area";
+}
+
+<!-- Creamos el  Formulario de envio de Información -->
+<form method="post">
+    <div style="padding-left:15%; padding-right:15%; padding-bottom:inherit.4rem;">
+        <div class="row border-0">
+            <div asp-validation-sumary="ModelOnly" class="text-danger">
+            </div>
+        </div>
+        @if (Model.Id != 0)
+        {
+            //Actualizar
+            titulo = "Actualizar Area";
+            <input type="hidden" asp-for="Id" />
+        }
+        <!-- Mostramos el titulo de la pagina -->
+        <div class="col-12 border-bottom p-0">
+            <h2 class="text-primary">@titulo</h2>
+        </div>
+
+        <!-- Campo Turno -->
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Turno</label>
+                <input type="text" asp-for="Turno" class="form-control" placeholder="Turno" id="turno" />
+                <span asp-validation-for="Turno" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <!-- Campo Descripción -->
+        <div class="row mb-2 mt-2">
+            <div class="form-group col-md-6">
+                <label>Descripción</label>
+                <input type="text" asp-for="Descripcion" class="form-control" placeholder="Descripción"/>
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+        </div>
+
+        <!-- Presentamos las vistas parciales -->
+        <br />
+        <div>
+            @if (Model.Id != 0)
+            {
+                <partial name="_BotonesActualizarYRegresar" model="Model.Id" />
+            }
+            else
+            {
+                <partial name="_BotonesCrearYRegresar" />
+            }
+        </div>
+
+    </div>
+</form>
+
+<!-- Configuramos por medio de un script al dom para que use los helper tags -->
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        const turno = document.getElementById("turno")
+        turno.addEventListener('change', ValidarNombre)
+
+        function ValidarNombre() {
+            var url = '@Url.Content("~/")' + "Admin/Area/ValidarNombre";
+            var id = '#id';
+            var turno = '#turno';
+
+            $.getJSON(url, { id: $(id).val(), turno: $(turno).val() }, function (data) {
+                $.each(data, function (key, value) {
+                    if (value) {
+                        var turno = document.getElementById("turno");
+                        swal("E R R O R", "Este Turno ya Existe", "error");
+                        turno.value = "";
+                    }
+                });
+            })
+        }
+    </script>
+}
+

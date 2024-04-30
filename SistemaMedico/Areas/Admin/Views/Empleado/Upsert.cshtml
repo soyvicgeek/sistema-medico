@@ -1,0 +1,131 @@
+﻿@model SistemaMedico.Modelos.ViewModels.EmpleadoVM
+@using SistemaMedico.Utilidades
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var titulo = "Crear Empleado Nuevo";
+}
+
+<form method="post" enctype="multipart/form-data">
+    @if (Model.Empleado.Id != 0)
+    {
+        titulo = "Editar Empleado";
+        <input asp-for="Empleado.Id" hidden />
+    }
+
+    <div class="border p-3">
+        <div asp-validation-sumary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <h2 class="text-info">@titulo</h2>
+        </div>
+
+        <div class="row">
+            <div class="col-8">
+                <div class="container">
+                    <!--Campo Nombre-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Nombre</label>
+                            <input asp-for="Empleado.Nombre" class="form-control" />
+                            <span asp-validate-for="Empleado.Nombre" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Campo Apellido Paterno-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Apellido Paterno</label>
+                            <input asp-for="Empleado.APaterno" class="form-control" />
+                            <span asp-validate-for="Empleado.APaterno" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Campo Apellido Materno-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Apellido Materno</label>
+                            <input asp-for="Empleado.AMaterno" class="form-control" />
+                            <span asp-validate-for="Empleado.AMaterno" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Campo Dirección-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Dirección</label>
+                            <input asp-for="Empleado.Direccion" class="form-control" />
+                            <span asp-validate-for="Empleado.Direccion" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Campo Teléfono-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Teléfono</label>
+                            <input asp-for="Empleado.Telefono" class="form-control" />
+                            <span asp-validate-for="Empleado.Telefono" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Lista Area-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Área</label>
+                            <select asp-for="Empleado.AreaId" asp-items="@Model.AreaLista" class="form-select">
+                                <option disabled selected>--Selecciona una Área--</option>
+                            </select>
+                            <span asp-validate-for="Empleado.AreaId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Lista Puesto-->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Puesto</label>
+                            <select asp-for="Empleado.PuestoId" asp-items="@Model.PuestoLista" class="form-select">
+                                <option disabled selected>--Selecciona un Puesto--</option>
+                            </select>
+                            <span asp-validate-for="Empleado.PuestoId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Botones-->
+                    <br />
+                    <div class="d-grid gap-2 d-md-block">
+                        @if (Model.Empleado.Id != 0)
+                        {
+                            <partial name="_BotonesActualizarYRegresar" model="Model.Empleado.Id" />
+                        }
+                        else
+                        {
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bg-info bi-plus-square-fill"></i>
+                                Crear
+                            </button>
+                            <a asp-action="Index" class="btn btn-success">
+                                <i class="bi bi-arrow-return-left"></i>
+                                Regresar
+                            </a>
+                        }
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Mostrar la imagen en otra columna-->
+            <div class="col-4">
+                @if (Model.Empleado.Id != 0)
+                {
+                    <p>.</p>
+                }
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+    </script>
+}

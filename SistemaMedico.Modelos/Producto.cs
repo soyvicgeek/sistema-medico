@@ -27,7 +27,7 @@ namespace SistemaMedico.Modelos
         public bool Estado { get; set; }
 
         //Hagamos la relación con la tabla categoría
-        [Required(ErrorMessage = "La categpría es requerida")]
+        [Required(ErrorMessage = "La categoría es requerida")]
         public int CategoriaId { get; set; }
         [ForeignKey("CategoriaId")]
         public Categoria Categoria { get; set; }
